@@ -14,52 +14,66 @@
 <main>
   <section class="calculator">
     <header>
-      <h1>Mortgage Calculator</h1>
-      <span>Clear All</span>
+      <h1 class="plus-jakarta-sans-700">Mortgage Calculator</h1>
+      <span class="plus-jakarta-sans-500" id="clear">Clear All</span>
     </header>
     <div class="inputs">
-      <label for="amount">Mortgage Amount</label>
-      <input type="text" id="amount">
-      <div class="half">
-        <label for="term">Mortgage Term</label>
-        <input type="text" id="term">
+      <div class="input-container">
+        <label for="amount" class="plus-jakarta-sans-500">Mortgage Amount</label>
+        <div class="input-component">
+          <span class="plus-jakarta-sans-500">£</span>
+          <input class="plus-jakarta-sans-700" type="text" id="amount">
+        </div>
       </div>
-      <div class="half">
-        <label for="rate">Interest Rate</label>
-        <input type="text" id="rate">
+      
+      <div class="input-container half">
+        <label for="term" class="plus-jakarta-sans-500">Mortgage Term</label>
+        <div class="input-component">
+          <input class="plus-jakarta-sans-700" type="text" id="term">
+          <span class="plus-jakarta-sans-500">years</span>
+        </div>
       </div>
+      
+      <div class="input-container half">
+        <label for="rate" class="plus-jakarta-sans-500">Interest Rate</label>
+        <div class="input-component">
+          <input class="plus-jakarta-sans-700" type="text" id="rate">
+          <span class="plus-jakarta-sans-500">%</span>
+        </div>
+      </div>
+
       <label for="type">Mortgage Type</label>
-      <div>
-        <input type="radio" id="repay" value="Repayment"><label for="repay">Repayment</label>
+      <div class="radio-type">
+        <input type="radio" id="repay" value="Repayment"><label class="plus-jakarta-sans-700" for="repay">Repayment</label>
       </div>
-      <div>
-        <input type="radio" id="interest" value="Interest Only"><label for="interest">Interest Only</label>
+      <div class="radio-type">
+        <input type="radio" id="interest" value="Interest Only"><label class="plus-jakarta-sans-700" for="interest">Interest Only</label>
       </div>
     </div>
-    <button>Calculate Repayments</button>
+    <button id="calculate" class="plus-jakarta-sans-700"><img src="images/icon-calculator.svg" alt="">Calculate Repayments</button>
   </section>
   <section class="result">
     <section class="empty-result">
       <img src="images/illustration-empty.svg" alt="">
-      <h2>Results shown here</h2>
-      <p>Complete the form and click “calculate repayments” to see what 
+      <h2 class="plus-jakarta-sans-700">Results shown here</h2>
+      <p class="plus-jakarta-sans-500">Complete the form and click “calculate repayments” to see what 
       your monthly repayments would be.</p>
     </section>
 
-    <section class="completed-result">
-      <h2>Your results</h2>
-      <p>Your results are shown below based on the information you provided. 
+    <section class="completed-result hidden">
+      <h2 class="plus-jakarta-sans-700">Your results</h2>
+      <p class="plus-jakarta-sans-500">Your results are shown below based on the information you provided. 
       To adjust the results, edit the form and click “calculate repayments” again.</p>
       <div class="payment">
-        <h4>Your monthly repayments</h4>
-        <h2></h2>
+        <h4 class="plus-jakarta-sans-500">Your monthly repayments</h4>
+        <h2 class="plus-jakarta-sans-700">1,797.74</h2>
         <hr>
-        <h4>Total you'll repay over the term</h4>
-        <h3></h3>
+        <h4 class="plus-jakarta-sans-500">Total you'll repay over the term</h4>
+        <h3 class="plus-jakarta-sans-700">539,322.94</h3>
       </div>
     </section>
   </section>
 </main>
-  
+<script src="index.js"></script>
 </body>
 </html>
