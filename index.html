@@ -24,6 +24,7 @@
           <span class="plus-jakarta-sans-500">£</span>
           <input class="plus-jakarta-sans-700" type="text" id="amount">
         </div>
+        <div class="error-message plus-jakarta-sans-500">This field is required</div>
       </div>
       
       <div class="input-container half">
@@ -32,6 +33,7 @@
           <input class="plus-jakarta-sans-700" type="text" id="term">
           <span class="plus-jakarta-sans-500">years</span>
         </div>
+        <div class="error-message plus-jakarta-sans-500">This field is required</div>
       </div>
       
       <div class="input-container half">
@@ -40,15 +42,20 @@
           <input class="plus-jakarta-sans-700" type="text" id="rate">
           <span class="plus-jakarta-sans-500">%</span>
         </div>
+        <div class="error-message plus-jakarta-sans-500">This field is required</div>
       </div>
 
-      <label for="type">Mortgage Type</label>
-      <div class="radio-type">
-        <input type="radio" id="repay" value="Repayment"><label class="plus-jakarta-sans-700" for="repay">Repayment</label>
+      <div class="input-container">
+        <label for="type">Mortgage Type</label>
+        <div class="radio-type">
+          <input type="radio" id="repay" value="Repayment"><label class="plus-jakarta-sans-700" for="repay">Repayment</label>
+        </div>
+        <div class="radio-type">
+          <input type="radio" id="interest" value="Interest Only"><label class="plus-jakarta-sans-700" for="interest">Interest Only</label>
+        </div>
+        <div class="error-message plus-jakarta-sans-500">This field is required</div>
       </div>
-      <div class="radio-type">
-        <input type="radio" id="interest" value="Interest Only"><label class="plus-jakarta-sans-700" for="interest">Interest Only</label>
-      </div>
+      
     </div>
     <button id="calculate" class="plus-jakarta-sans-700"><img src="images/icon-calculator.svg" alt="">Calculate Repayments</button>
   </section>

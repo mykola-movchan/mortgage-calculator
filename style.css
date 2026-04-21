@@ -88,6 +88,16 @@ header span {
     color: var(--slate-700);
 }
 
+.error-message {
+    visibility: hidden;
+    color: var(--red);
+    font-size: 0.8rem;
+}
+
+.input-container.error .error-message {
+    visibility: visible;
+}
+
 .input-component {
     width: 100%;
     border: 1px solid var(--slate-700);
@@ -109,6 +119,16 @@ header span {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.input-container.error .input-component {
+    border: 1px solid var(--red);
+}
+
+.input-container.error .input-component span {
+    background-color: var(--red);
+    color: white;
+
 }
 
 .half > .input-component {

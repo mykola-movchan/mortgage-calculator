@@ -1,3 +1,6 @@
+const mainInputs = document.querySelector('.inputs');
+const emptyResult = document.querySelector('.empty-result');
+const completedResult = document.querySelector('.completed-result');
 const clear = document.querySelector('#clear');
 const amount = document.querySelector('#amount');
 const term = document.querySelector('#term');
@@ -10,14 +13,36 @@ function handleRadio(e) {
     e.target.checked = true;
 }
 
-function handleForm() {
-    validatePercent(rate);
-    console.log(rateValue);
+function validateInput(input) {
+    if (input.value === undefined || input.value === "") {
+        input.closest('.input-container').classList.add('error');
+    }
+    else {
+        input.closest('.input-container').classList.remove('error');
+    }
 }
 
-// function validatePercent(input) {
-    
-// }
+function validateRadio(inputs) {
+    const hasChecked = [...inputs].some(radio => radio.checked);
+    if (hasChecked) {
+        inputs[0].closest('.input-container').classList.remove('error');
+    }
+    else {
+        inputs[0].closest('.input-container').classList.add('error');
+    }
+}
+
+function handleForm() {
+    validateInput(amount);
+    validateInput(term);
+    validateInput(rate);
+    validateRadio(radioButtons);
+
+    if (mainInputs.querySelector('.input-container.error') === null) {
+        emptyResult.classList.add('hidden');
+        completedResult.classList.remove('hidden');
+    }
+}
 
 clear.addEventListener('click', () => {
     amount.value = '';
