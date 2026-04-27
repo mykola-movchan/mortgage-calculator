@@ -5,9 +5,11 @@ const clear = document.querySelector('#clear');
 const amount = document.querySelector('#amount');
 const term = document.querySelector('#term');
 const rate = document.querySelector('#rate');
+const monthlyPayment = document.querySelector('#monthlyPay');
+const totalPayment = document.querySelector('#totalPay');
 const radioButtons = document.querySelectorAll('.radio-type input');
 const calculate = document.querySelector('#calculate');
-let rateValue = 0;
+
 function handleRadio(e) {
     radioButtons.forEach(button => button.checked = false);
     e.target.checked = true;
@@ -32,14 +34,51 @@ function validateRadio(inputs) {
     }
 }
 
+function calculateMonthlyPaymentRepayment(p, r, n) {
+    return p * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+}
+
+function calculateMonthlyPaymentInterest(p, r) {
+    return p * r;
+}
+
 function handleForm() {
     validateInput(amount);
     validateInput(term);
     validateInput(rate);
     validateRadio(radioButtons);
 
-    if (mainInputs.querySelector('.input-container.error') === null) {
+    const hasErrors = mainInputs.querySelector('.input-container.error') !== null;
+
+    if (!hasErrors) {
         emptyResult.classList.add('hidden');
+
+        const p = Number(amount.value); // principalAmount 
+        const r = parseFloat((rate.value / 100 / 12).toFixed(6)); // interestRate 
+        const n = Number(term.value) * 12; // numberOfMontlyPayments
+
+        const selectedType = [...radioButtons].find(r => r.checked)?.value;
+
+        let monthly = 0;
+        let total = 0;
+
+        if (selectedType === "Repayment") {
+            monthly = calculateMonthlyPaymentRepayment(p, r, n);
+            total = monthly * n;
+        } else if (selectedType === "Interest") {
+            monthly = calculateMonthlyPaymentInterest(p, r);
+            total = monthly * n;
+        }
+
+        function formatNumber(value) {
+            return value
+                .toFixed(2)
+                .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
+
+        monthlyPayment.textContent = formatNumber(monthly);
+        totalPayment.textContent = formatNumber(total);
+
         completedResult.classList.remove('hidden');
     }
 }
