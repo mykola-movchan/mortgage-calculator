@@ -10,11 +10,6 @@ const totalPayment = document.querySelector('#totalPay');
 const radioButtons = document.querySelectorAll('.radio-type input');
 const calculate = document.querySelector('#calculate');
 
-function handleRadio(e) {
-    radioButtons.forEach(button => button.checked = false);
-    e.target.checked = true;
-}
-
 function validateInput(input) {
     if (input.value === undefined || input.value === "") {
         input.closest('.input-container').classList.add('error');
@@ -83,11 +78,39 @@ function handleForm() {
     }
 }
 
+const textInputs = document.querySelectorAll('input[type="text"]');
+
+textInputs.forEach(input => {
+    input.addEventListener('input', function () {
+        let value = this.value.replace(/[^0-9.]/g, '');
+
+        const parts = value.split('.');
+        if (parts.length > 2) {
+            value = parts[0] + '.' + parts.slice(1).join('');
+        }
+
+        this.value = value;
+    });
+});
+
 clear.addEventListener('click', () => {
     amount.value = '';
     term.value = '';
     rate.value = '';
     radioButtons.forEach(button => button.checked = false);
+
+    if (!completedResult.classList.contains('hidden')) {
+        completedResult.classList.add('hidden');
+        emptyResult.classList.remove('hidden');
+    }
 });
+
 calculate.addEventListener('click', handleForm);
-radioButtons.forEach(button => button.addEventListener('click', handleRadio));
+
+document.querySelectorAll('.radio-type').forEach(container => {
+    container.addEventListener('click', () => {
+        container.querySelector('input').checked = true;
+    });
+});
+
+
